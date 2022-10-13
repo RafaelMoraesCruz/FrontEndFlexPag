@@ -1,0 +1,20 @@
+h1{
+    padding: 2% 7%;
+    text-align: center;
+}
+
+#search-tools{
+    margin: 2% 5%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+#list{
+    margin: 2% 5%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    padding: 1% 7%;
+    text-align: center;
+}
