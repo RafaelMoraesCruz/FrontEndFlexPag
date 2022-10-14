@@ -10,6 +10,19 @@ h1{
     border-color: black;
 }
 
+.row{
+}
+
+.column{
+    padding: 1%;
+}
+
+.btn{
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
 #list{
     margin: 2% 5%;
     border-width: 1px;

@@ -14,16 +14,43 @@
 
     <!-- css -->
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>Histórico de cotação</h1>
     <section id="search-tools">
-        <p>teste</p>
+        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+          <div class="column">
+            <p>Moeda</p>
+            <select id="moeda" name="moeda">
+              <option value="AUD">Dólar australiano</option>
+              <option value="CAD">Dólar canadense</option>
+              <option value="EUR">Euro</option>
+              <option value="USD">Dólar dos Estados Unidos</option>
+            </select>
+          </div>
+          <div class="column">
+            <p>Data Inicial</p>
+            <input type="date" id="data-inicial" name="diaa">
+          </div>
+          <div class="column">
+            <p>Data Final</p>
+            <input type="date" id="data-final" name="diaa">
+          </div>
+          <div class="column">
+            <br>
+            <button class="btn btn-success">Consultar dados</button>
+          </div>
+          <div class="column">
+            <br>
+            <button class="btn btn-primary">Atualizar dados</button>
+          </div>
+        </div>
 
     </section>
 
     <section id="list">
-        <table id="professor" class="table">
+        <table id="table-cotacoes" class="table">
             <thead>
               <tr>
                 <th scope="col">Cotação de compra</th>
@@ -31,7 +58,7 @@
                 <th scope="col">Data e hora da cotação</th>
               </tr>
             </thead>
-            <tbody id="professorsList">
+            <tbody id="cotacaoList">
             </tbody>
           </table>
     </section>
