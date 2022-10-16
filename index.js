@@ -1,19 +1,25 @@
-const moeda = $("#moeda")
-const dataInicial = $("#data-inicial")
-const dataFinal = $("#data-final")
 const cotacaoList = $("#cotacaoList")
 
-
 async function searchCotacoes(){
-    cotacaoList.html = ''
-    const cotacaoNameForSearch = $('#professorNameForSearch')
-    const response = await fetch("https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaPeriodo(moeda=@moeda,dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@moeda=%27EUR%27&@dataInicial=%2707-06-2022%27&@dataFinalCotacao=%2707-25-2022%27&$top=1000&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao")
+    cotacaoList.html('')
+    const moeda = $('#moeda')
+    var dataInicial = $("#data-inicial")
+    var dataFinal = $("#data-final")
+
+    if(dataFinal.val() < dataInicial.val()){
+        alert("data final menor do que a inicial")
+    }
+    else{
+    dataInicial = dataAtualFormatada(dataInicial.val())
+    dataFinal =  dataAtualFormatada(dataFinal.val())
+
+    const response = await fetch("https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaPeriodo(moeda=@moeda,dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@moeda=%27"+moeda.val()+"%27&@dataInicial=%27"+dataInicial+"%27&@dataFinalCotacao=%27"+dataFinal+"%27&$top=1000&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao")
     if(response.ok){
         const cotacoes = await response.json();
-        cotacoes.forEach((cotacao) => {
+        cotacoes.value.forEach((cotacao) => {
             createRow(cotacao);
         });
-    }
+    }}
 }
 
 async function showAllCotacoes(){
@@ -46,4 +52,7 @@ async function createRow({ cotacaoCompra, cotacaoVenda , dataHoraCotacao}){
     cotacaoList.append(row)
 }
 
-showAllCotacoes()
+function dataAtualFormatada(data){
+    return  data.substring(5,7) + "-" + data.substring(8,10) + "-" + data.substring (0,4)
+
+}
