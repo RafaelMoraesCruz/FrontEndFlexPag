@@ -22,16 +22,6 @@ async function searchCotacoes(){
     }}
 }
 
-async function showAllCotacoes(){
-    const response = await fetch("https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoMoedaPeriodo(moeda=@moeda,dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@moeda=%27EUR%27&@dataInicial=%2707-06-2022%27&@dataFinalCotacao=%2707-25-2022%27&$top=1000&$format=json&$select=cotacaoCompra,cotacaoVenda,dataHoraCotacao")
-    if(response.ok){
-        const Cotacoes = await response.json();
-        Cotacoes.value.forEach((cotacao) => {
-            createRow(cotacao);
-        });
-    }
-}
-
 async function createRow({ cotacaoCompra, cotacaoVenda , dataHoraCotacao}){
     const row = $('<tr/>',{
         class: 'row'
